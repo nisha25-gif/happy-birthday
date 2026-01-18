@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11 Years of Us 🌸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --pink: #ffafcc; --dark-pink: #ff85a2; --cream: #fff9fb; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: radial-gradient(circle, #fff0f3 0%, #ffdee9 100%);
+            color: #555; height: 100vh; overflow: hidden;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .container { width: 90%; max-width: 450px; height: 85vh; position: relative; }
+
+        .page {
+            position: absolute; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px);
+            border-radius: 40px; padding: 25px; display: none;
+            flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; border: 2px solid #fff;
+            box-shadow: 0 15px 35px rgba(255, 175, 204, 0.2);
+            animation: fadeIn 0.8s ease-out;
+        }
+        .active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        h1 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--dark-pink); }
+        .btn {
+            background: var(--dark-pink); color: white; border: none;
+            padding: 12px 30px; border-radius: 50px; cursor: pointer;
+            font-weight: bold; margin-top: 15px; transition: 0.3s;
+        }
+        .btn:hover { transform: scale(1.05); }
+
+        /* 📸 POLAROID WALL */
+        .memory-wall {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+            overflow-y: auto; max-height: 400px; padding: 10px;
+        }
+        .polaroid {
+            background: white; padding: 5px 5px 15px 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); transform: rotate(var(--r));
+            transition: 0.3s;
+        }
+        .polaroid img { width: 100%; height: 80px; object-fit: cover; border-radius: 5px; }
+        .polaroid p { font-size: 0.6rem; margin-top: 5px; font-weight: bold; }
+        .polaroid:hover { transform: rotate(0deg) scale(1.1); z-index: 10; }
+
+        /* 🎂 CAKE */
+        .cake-container { margin: 40px 0; position: relative; }
+        .cake { width: 120px; height: 80px; background: #f4d03f; border-radius: 10px 10px 0 0; position: relative; }
+        .candle { width: 10px; height: 40px; background: #fff; position: absolute; top: -40px; left: 55px; border-radius: 5px; }
+        .flame { 
+            width: 15px; height: 20px; background: orange; border-radius: 50%; 
+            position: absolute; top: -15px; left: -2px; box-shadow: 0 0 10px orange;
+            animation: flicker 0.1s infinite;
+        }
+        @keyframes flicker { 50% { opacity: 0.8; transform: scale(1.1); } }
+        
+        .confetti { position: fixed; font-size: 20px; animation: fall 3s linear forwards; }
+        @keyframes fall { to { transform: translateY(100vh); opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <audio id="music" loop><source src="C:\Users\Krishnam\Downloads\happy-birthday-357371.mp3" type="audio/mpeg"></audio>
+
+    <div class="container">
+        <div class="page active" id="p1">
+            <h1>11 Years of Magic... ✨</h1>
+            <video style="width:100%; border-radius:20px; margin:20px 0;" autoplay muted loop playsinline>
+                <source src="C:\Users\Krishnam\Downloads\happy-birthday-357371.mp3" type="video/mp4">
+            </video>
+            <p>From day one to forever. Ready for your surprise?</p>
+            <button class="btn" onclick="start()">Click to Start ❤️</button>
+        </div>
+
+        <div class="page" id="p2">
+            <h1>Our 11 Years</h1>
+            <p style="font-size: 0.8rem; margin-bottom: 10px;">One memory for every year...</p>
+            <div class="memory-wall">
+                <div class="polaroid" style="--r:-5deg"><img src="C:\Users\Krishnam\OneDrive\Documents\photo1.jpeg"><p></p></div>
+                <div class="polaroid" style="--r:3deg"><img src="C:\Users\Krishnam\OneDrive\Documents\ph2.jpeg"><p></p></div>
+                <div class="polaroid" style="--r:-2deg"><img src="C:\Users\Krishnam\OneDrive\Documents\ph3.jpeg"><p></p></div>
+                <div class="polaroid" style="--r:4deg"><img src="C:\Users\Krishnam\OneDrive\Documents\ph4.jpeg"><p></p></div>
+                <div class="polaroid" style="--r:-6deg"><img src="C:\Users\Krishnam\OneDrive\Documents\ph 5.jpeg"><p></p></div>
+                <div class="polaroid" style="--r:2deg"><img src="C:\Users\Krishnam\OneDrive\Documents\ph6.jpeg"><p></p></div>
+            </div>
+            <button class="btn" onclick="nextPage(3)">It's Cake Time! 🎂</button>
+        </div>
+
+        <div class="page" id="p3">
+            <h1>Make a Wish...</h1>
+            <div class="cake-container">
+                <div class="cake"><div class="candle"><div id="flame" class="flame"></div></div></div>
+            </div>
+            <p>Close your eyes and blow!</p>
+            <button class="btn" id="blowBtn" onclick="blow()">💨 Blow Candle</button>
+        </div>
+
+        <div class="page" id="p4">
+            <h1>11 Years & Forever</h1>
+            <div style="text-align: left; font-size: 0.9rem; background: white; padding: 20px; border-radius: 20px;">
+                Happy Birthday! 🎂 <br><br>
+                We've spent 11 years growing up together, sharing secrets, and making mistakes. You aren't just my bestie; you're the family I chose. 
+                <br><br>I hope this year is as legendary as our friendship. I love you!
+            </div>
+            <button class="btn" onclick="location.reload()">Replay the Magic ✨</button>
+        </div>
+    </div>
+
+    <script>
+        function start() { document.getElementById('music').play(); nextPage(2); }
+        function nextPage(n) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('p' + n).classList.add('active');
+        }
+        function blow() {
+            document.getElementById('flame').style.display = 'none';
+            document.getElementById('blowBtn').innerText = "Wish Made! ✨";
+            for(let i=0; i<40; i++) {
+                const c = document.createElement('div');
+                c.className = 'confetti';
+                c.innerHTML = '🌸';
+                c.style.left = Math.random()*100+'vw';
+                c.style.top = '-20px';
+                c.style.animationDuration = (Math.random()*2+1)+'s';
+                document.body.appendChild(c);
+            }
+            setTimeout(() => nextPage(4), 3000);
+        }
+    </script>
+</body>
+</html>
